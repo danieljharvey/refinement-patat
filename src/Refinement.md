@@ -8,8 +8,8 @@ patat:
     right: 10
     top: 10
     bottom: 10
-  images:
-    backend: auto
+  incrementalLists: true
+
 ---
 
 # Types
@@ -36,8 +36,58 @@ What?
 
 # Intro to some types
 
-```javascript
-"dog" :: String
-6 :: Integer
-6.7556 :: Single
+I am going to use the following nomenclature to describe types:
+
+```haskell
+aVariableOrSomething :: TheTypeOfSaidThing
 ```
+
+For instance.
+
+```haskell
+6 :: Integer
+
+6.7556 :: Single
+
+"Horses" :: String
+```
+
+# The Typescript Tax
+
+* In most cases, if you can gain a significant benefit from TypeScript in your refactoring, that’s often a code smell indicating that your code is too tightly coupled. 
+
+> Eric Elliott, "The Typescript Tax"
+
+
+# Defensive programming
+
+* Making sure that the string is definitely a string and not empty
+
+```javascript
+function printName(name) {
+  if (name && name.length > 0 && typeof name === 'string') then {
+    return name
+  } else {
+    return "No name!"
+}
+```
+
+* avoiding divide by zero errors
+
+```javascript
+function divide(a, b) {
+  if (b == 0) then {
+    return 0; // would have caused error
+  } else {
+    return a / b
+  }
+}
+```
+
+# Why do we still even have these problems?
+
+* ...there is little evidence that type safety makes a big difference... pair TDD with design review, spec review, and code review, and you’re looking at 90%+ reductions in bug density.
+
+> Eric Elliott, "The Typescript Tax"
+
+
